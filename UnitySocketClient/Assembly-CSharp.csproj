@@ -39,14 +39,15 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>d:/Program Files/Unity5.6/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>d:/Program Files/Unity5.6/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity5.6/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\LoginScene.cs" />
+     <Compile Include="Assets\Scripts\SocketEngine\Controller\AccountController.cs" />
      <Compile Include="Assets\Scripts\SocketEngine\Controller\ControllerBase.cs" />
      <Compile Include="Assets\Scripts\SocketEngine\Controller\ServerListController.cs" />
      <Compile Include="Assets\Scripts\SocketEngine\SocketEngine.cs" />
@@ -71,11 +72,14 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
- <Reference Include="MDCSharpClient">
- <HintPath>F:/GitHub/MDUnityClent/UnitySocketClient/Assets/Plugins/MDCSharpClient.dll</HintPath>
- </Reference>
  <Reference Include="Common">
  <HintPath>F:/GitHub/MDUnityClent/UnitySocketClient/Assets/Plugins/Common.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>F:/GitHub/MDUnityClent/UnitySocketClient/Assets/Plugins/LitJson.dll</HintPath>
+ </Reference>
+ <Reference Include="MDCSharpClient">
+ <HintPath>F:/GitHub/MDUnityClent/UnitySocketClient/Assets/Plugins/MDCSharpClient.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>D:/Program Files/Unity5.6/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

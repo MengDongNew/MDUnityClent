@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using MDCSharpClient;
 using UnityEngine;
 using Common;
+using Common.Tool;
+using Common.Modal;
 public class ServerListController : ControllerBase {
     public override byte OpCode { get { return (byte)OperationCode.Server; } }
     protected override void Start()
@@ -11,7 +13,11 @@ public class ServerListController : ControllerBase {
 
         SocketEngine.Instance.OnConnectToServer += Instance_OnConnectToServer;
     }
-
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        SocketEngine.Instance.OnConnectToServer -= Instance_OnConnectToServer;
+    }
     private void Instance_OnConnectToServer()
     {
         RequestServerList();
@@ -28,11 +34,25 @@ public class ServerListController : ControllerBase {
 
     public override void OnOperationResponse(OperationResponse operationResponse)
     {
-        Log("OnOperationResponse=" + operationResponse.OperationCode + " ReturnCode=" + operationResponse.ReturnCode);
-        foreach (var parameter in operationResponse.Parameters)
+        ReturnCode rcode = (ReturnCode)operationResponse.ReturnCode;
+        if (rcode == ReturnCode.Success)
         {
-            Log(parameter.Key + ":" + parameter.Value.ToString());
+            Log("OnOperationResponse=" + operationResponse.OperationCode + " ReturnCode=" + operationResponse.ReturnCode);
+            var list = ParameterTool.GetParameter<List<ServerProperty>>(operationResponse.Parameters, ParameterCode.ServerList);
+            foreach (var v in list)
+            {
+                Log("id=" + v.ID + ",ip=" + v.IP + ",name=" + v.Name + ",count=" + v.Count);
+            }
+
         }
+        else {
+            Debug.LogWarning("ReturnCode="+rcode);
+        }
+       
+        //foreach (var parameter in operationResponse.Parameters)
+        //{
+        //    Log(parameter.Key + ":" + parameter.Value.ToString());
+        //}
     }
 
 

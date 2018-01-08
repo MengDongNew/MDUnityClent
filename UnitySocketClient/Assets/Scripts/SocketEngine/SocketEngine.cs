@@ -19,9 +19,9 @@ public class SocketEngine : MonoBehaviour, MDCSharpClient.IPeerListener {
         instance = this;
         controllers = new Dictionary<byte, ControllerBase>();
         peer = new ClientPeer(this);
-        peer.Connect("127.0.0.1", "26680");
+        peer.Connect("192.168.1.20", "26680");
     }
-    void OnDestroy() { instance = null; }
+    void OnDestroy() {}
     // Use this for initialization
     void Start()
     {
@@ -58,7 +58,7 @@ public class SocketEngine : MonoBehaviour, MDCSharpClient.IPeerListener {
     public void SendRequest(byte opCode, Dictionary<byte, object> parameters)
     {
         Log("sendrequest to server , opcode : " + opCode);
-        peer.OpCustom((byte)opCode, parameters);
+        peer.OpCustom(opCode, parameters);
     }
     #region Interface
     public void DebugReturn(DebugLevel level, string message)
@@ -109,6 +109,7 @@ public class SocketEngine : MonoBehaviour, MDCSharpClient.IPeerListener {
             case StatusCode.Disconnect:
                 {
                     //todo
+                    Debug.Log("Disconnect.!!!");
                 }
                 break;
             default:
